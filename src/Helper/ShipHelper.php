@@ -17,6 +17,7 @@ class ShipHelper
         }
         return $sizes;
     }
+
     public static function getMiningMounts(array $ship): array
     {
         $miningMounts = [];
@@ -30,6 +31,21 @@ class ShipHelper
         }
         return $miningMounts;
     }
+
+    public static function getMaxMountBySizes(array $ship): array
+    {
+        $miningMounts = self::getMiningMounts($ship);
+        $nbMaxMountBySizes = [];
+        foreach ($miningMounts as $miningMount) {
+            $size = $miningMount['size'];
+            if (!array_key_exists($size, $nbMaxMountBySizes)) {
+                $nbMaxMountBySizes[$size] = 0;
+            }
+            $nbMaxMountBySizes[$size] = $nbMaxMountBySizes[$size] + ((int)$miningMount['mounts'] * (int)$miningMount['quantity']);
+        }
+        return $nbMaxMountBySizes;
+    }
+
     public static function getTractorBeamMounts(array $ship): array
     {
         $miningMounts = [];

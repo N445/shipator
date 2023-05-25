@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Helper\ShipHelper;
 use App\Model\MiningConfigurator;
 use App\Service\FormHelper\ChoicesValuesProvider;
 use App\Service\ShipProvider;
@@ -42,15 +43,18 @@ class MiningConfiguratorType extends AbstractType
 
             $shipId = $data?->getShipId();
             $this->addMiningLaserField($event->getForm(), $shipId);
-        }
-        );
+        });
 
         $builder->get('shipId')->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
             $shipId = $event->getForm()->getData();
-            $this->addShip($event->getForm()->getParent(), $shipId);
+
+            /** @var MiningConfigurator $miningConfigurator */
+            $miningConfigurator = $event->getForm()->getParent()->getData();
+            $miningConfigurator->setShip($this->shipProvider->getshipById($shipId));
+
+            $this->addShip($miningConfigurator, $shipId);
             $this->addMiningLaserField($event->getForm()->getParent(), $shipId);
-        }
-        );
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -60,10 +64,8 @@ class MiningConfiguratorType extends AbstractType
         ]);
     }
 
-    public function addShip(FormInterface $form, ?int $shipId): void
+    public function addShip(MiningConfigurator $miningConfigurator, ?int $shipId): void
     {
-        /** @var MiningConfigurator $miningConfigurator */
-        $miningConfigurator = $form->getData();
         $miningConfigurator->setShip($this->shipProvider->getshipById($shipId));
     }
 
