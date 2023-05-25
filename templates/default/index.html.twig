@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!{% endblock %}
+
+{% block body %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <div class="container">
+        {{ component('mining_configurator',{
+            'form':form,
+            'miningConfigurator':miningConfigurator
+        }) }}
+    </div>
+
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col" class="text-nowrap">Name</th>
+                    <th scope="col" class="text-nowrap">Price</th>
+                    <th scope="col" class="text-nowrap">Size</th>
+                    <th scope="col" class="text-nowrap">OptimumRange</th>
+                    <th scope="col" class="text-nowrap">MaxRange</th>
+                    <th scope="col" class="text-nowrap">MinPower</th>
+                    <th scope="col" class="text-nowrap">MinPower</th>
+                    <th scope="col" class="text-nowrap">MaxPower</th>
+                    <th scope="col" class="text-nowrap">ExtractionPower</th>
+                    <th scope="col" class="text-nowrap">NbModuleSlot</th>
+                    <th scope="col" class="text-nowrap">Resistance</th>
+                    <th scope="col" class="text-nowrap">Instablity</th>
+                    <th scope="col" class="text-nowrap">OptimalChargeRate</th>
+                    <th scope="col" class="text-nowrap">OptimalChargeWindow</th>
+                    <th scope="col" class="text-nowrap">InertMaterial</th>
+                    {#                    <th scope="col" class="text-nowrap">BuyingLocations</th> #}
+                </tr>
+                </thead>
+                <tbody>
+                {% for miningLAser in miningLAsers %}
+                    <tr>
+                        <td class="text-nowrap">{{ miningLAser.Name }}</td>
+                        <td class="text-nowrap">{{ miningLAser.Price|number_format(2,',',' ') }}</td>
+                        <td class="text-nowrap text-end">{{ miningLAser.Size }}</td>
+                        <td class="text-nowrap text-end">{{ miningLAser.OptimumRange }}</td>
+                        <td class="text-nowrap text-end">{{ miningLAser.MaxRange }}</td>
+                        <td class="text-nowrap text-end">{{ miningLAser.MinPower }}</td>
+                        <td class="text-nowrap text-end">{{ miningLAser.MinPowerPercent }}%</td>
+                        <td class="text-nowrap text-end">{{ miningLAser.MaxPower }}</td>
+                        <td class="text-nowrap text-end">{{ miningLAser.ExtractionPower }}</td>
+                        <td class="text-nowrap text-end">{{ miningLAser.NbModuleSlot }}</td>
+                        <td class="text-nowrap text-end">{{ miningLAser.Resistance }}%</td>
+                        <td class="text-nowrap text-end">{{ miningLAser.Instablity }}%</td>
+                        <td class="text-nowrap text-end">{{ miningLAser.OptimalChargeRate }}%</td>
+                        <td class="text-nowrap text-end">{{ miningLAser.OptimalChargeWindow }}%</td>
+                        <td class="text-nowrap text-end">{{ miningLAser.InertMaterial }}%</td>
+                        {#                        <td>{{ miningLAser.BuyingLocations|join(',') }}</td> #}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+

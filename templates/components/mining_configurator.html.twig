@@ -1,0 +1,82 @@
+<div
+        {{ attributes }}
+>
+    <div class="row my-5">
+        <div class="col-md-3">
+           <div class="card">
+               <div class="card-header">
+                   <h6>Configuration</h6>
+               </div>
+               <div class="card-body">
+                   {{ form_start(form) }}
+                   {{ form_widget(form) }}
+                   {{ form_end(form) }}
+               </div>
+           </div>
+        </div>
+        <div class="col-md">
+            {% if miningConfigurator.ship %}
+                {% set ship = miningConfigurator.ship %}
+                {#                {{ dump(ship.media|first.images) }} #}
+                {% set image = miningConfigurator.ship.media|first.images.slideshow_wide %}
+                <div class="card">
+                    <img src="{{ image|media_url }}" class="card-img-top" alt="{{ ship.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ ship.name }}</h5>
+                        <p class="card-text"><small>{{ ship.focus }}</small></p>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    {% set tractorBeam = ship|get_mining_mounts %}
+                    {% if tractorBeam|length > 0 %}
+                        <h6>Mining laser</h6>
+                        <div class="row g-3">
+                            {% for mount in tractorBeam %}
+                                {% for subMount in 1..mount.quantity %}
+                                    {# turret #}
+                                    {% for subsubMount in 1..mount.mounts %}
+                                        {# by mount #}
+                                        <div class="col-md-2">
+                                            <div class="border d-flex justify-content-center align-items-center"
+                                                 style="aspect-ratio: 1">
+                                                {{ mount.size }}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% set tractorBeam = ship|get_tractor_beam_mounts %}
+                    {% if tractorBeam|length > 0 %}
+                        <hr>
+                        <h6>Tractor Beam</h6>
+                        <div class="row g-3">
+                            {% for mount in tractorBeam %}
+                                {% for subMount in 1..mount.quantity %}
+                                    {# turret #}
+                                    {% for subsubMount in 1..mount.mounts %}
+                                        {# by mount #}
+                                        <div class="col-md-2">
+                                            <div class="border d-flex justify-content-center align-items-center"
+                                                 style="aspect-ratio: 1">
+                                                {{ mount.size }}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h6>Cart</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

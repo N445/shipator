@@ -1,0 +1,13 @@
+name,price,size,optimumRange,maxRange,minPower,maxPower,extractionPower,nbModuleSlot,resistance,instablity,optimalChargeRate,optimalChargeWindow,inertMaterial,buyingLocations
+Lancet MH1,23000,1,30,90,504,2520,1850,1,0,-10,40,-60,-30,"HUR L2;CRU L1;ARC L1;ARC L2;ARC L4;MIC L1;MIC L2;Tammany And Sons, Lorville;Dumpers Depot, Port Olisar;Shubin Interstellar, New Babbage"
+Lancet MH2,23500,2,45,135,900,3600,2590,2,0,-10,40,-60,-40,
+Hofstede-S2,12750,1,45,135,105,2100,1295,1,-30,10,20,60,-30,
+Hofstede-S3,12000,2,60,180,336,3360,1295,2,-30,10,20,60,-40,
+Klein-S1,10150,1,45,135,378,2220,2220,0,-45,35,0,20,-30,
+Klein-S2,10150,2,60,180,720,3600,2775,1,-45,35,0,20,-40,
+Impact I,57000,1,45,135,420,2100,2775,2,10,-10,-40,20,-30,
+Impact II,57750,2,60,180,840,3360,3145,3,10,-10,-40,20,-40,
+Helix I,100000,1,15,45,630,3150,1850,2,-30,0,0,-40,-30,
+Helix II,108000,2,30,90,1020,4080,2590,3,-30,0,0,-40,-30,
+Arbor MH1,,1,60,180,189,1890,1850,1,25,-35,0,40,-30,
+Arbor MH2,,2,90,270,480,2400,2590,2,25,-35,0,40,-40,
